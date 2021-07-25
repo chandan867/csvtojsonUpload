@@ -3,16 +3,21 @@ const mongoose=require('mongoose')
 const csvtojson=require('csvtojson')
 const multer=require('multer')
 const question = require('./model/questModel')
+const ejs=require('ejs')
+
+
 
 
 
 const app=express() 
+app.set('view engine','ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 
 
 app.get("/",function(req,res){
-  res.sendFile(__dirname+'/index.html');
+ // res.sendFile(__dirname+'/index.html');
+ res.render('index')
 });
 
 /////////////uploading file through multer//////////
@@ -34,6 +39,7 @@ async function data(filePath){
     console.log(filePath)
     const data=await csvtojson().fromFile(filePath);
  //  insert through mongoDb
+ ////
    question.insertMany(data,(err,res)=>{
      if(err)
      console.log(err)
@@ -56,7 +62,7 @@ res.send('file uploaded')
 
 ////connecting to the database
 
-let url='PUT YOUR URL HERE'
+let url='mongodb+srv://chandan:chandan47@cluster0.2ben8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const ConnectDb = async () => {
  
   try {
