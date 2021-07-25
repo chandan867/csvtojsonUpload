@@ -62,7 +62,7 @@ res.send('file uploaded')
 
 ////connecting to the database
 
-let url='mongodb+srv://chandan:chandan47@cluster0.2ben8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+let url='ur url'
 const ConnectDb = async () => {
  
   try {
